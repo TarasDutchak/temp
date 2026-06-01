@@ -2,11 +2,11 @@ jQuery(document).ready(function ($) {
 
     // animation init
 
-    // AOS.init({
-    //     // startEvent: 'DOMContentLoaded',
-    //     // once: false,
-    //     duration: 1200,
-    // });
+    AOS.init({
+        // startEvent: 'DOMContentLoaded',
+        // once: false,
+        duration: 1200,
+    });
 
     // HEADER
 
