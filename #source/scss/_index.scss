@@ -764,6 +764,12 @@ a.gridbox {
     margin: 0 0.25em;
 }
 
+.benefits__item .orange-text:first-child,
+.orange-text:first-child,
+.highlighted:first-child {
+    margin-left: 0;
+}
+
 @media(max-width:1499.8px) {
     .hero__title {
         font-size: 80px;
@@ -881,9 +887,9 @@ a.gridbox {
         font-size: 20px;
     }
 
-    .advantage-sect__item p span {
-        font-size: 30px;
-    }
+    // .advantage-sect__item p span {
+    //     font-size: 30px;
+    // }
 
     .workwithtemp .title,
     .textslider p {
