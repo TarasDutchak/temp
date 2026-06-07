@@ -118,4 +118,138 @@ jQuery(document).ready(function ($) {
 
 
 
+
+
+
+
+
+    // $('.has-animation').each(function () {
+    //     const el = this;
+
+    //     const observer = new IntersectionObserver(([entry]) => {
+    //         if (entry.isIntersecting) {
+    //             $(el).delay($(el).data('delay') || 0).queue(function () {
+    //                 $(this).addClass('animate-in');
+    //             });
+    //             observer.disconnect(); // запускаємо тільки раз
+    //         }
+    //     }, { threshold: 0.1 });
+
+    //     observer.observe(el);
+    // });
+    // // -----------
+    // function splitText(selector) {
+    //     const els = document.querySelectorAll(selector);
+
+    //     els.forEach(el => {
+    //         const targets = el.querySelectorAll('span').length > 0
+    //             ? el.querySelectorAll('span')
+    //             : [el];
+
+    //         targets.forEach((span, spanIndex) => {
+    //             const words = span.textContent.trim().split(' ');
+
+    //             span.innerHTML = words.map(word => {
+    //                 const letters = word.split('').map(char =>
+    //                     `<span class="char">${char}</span>`
+    //                 ).join('');
+    //                 return `<span class="word">${letters}</span>`;
+    //             }).join(' ');
+
+    //             span.querySelectorAll('.char').forEach(char => {
+    //                 char.style.transitionDelay = `${spanIndex * 0.2}s`;
+    //             });
+    //         });
+
+    //         const observer = new IntersectionObserver(([entry]) => {
+    //             if (entry.isIntersecting) {
+    //                 el.querySelectorAll('.char').forEach(char => {
+    //                     char.classList.add('is-visible');
+    //                 });
+    //             }
+    //         }, { threshold: 0.1 });
+
+    //         observer.observe(el);
+    //     });
+    // }
+
+    // splitText('.reveal-title');
+
+
+
+    $('.has-animation').each(function () {
+        const el = this;
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                $(el).delay($(el).data('delay') || 0).queue(function () {
+                    $(this).addClass('animate-in');
+                });
+            } else {
+                $(el).removeClass('animate-in').clearQueue();
+            }
+        }, { threshold: 0.1 });
+
+        observer.observe(el);
+    });
+
+    // -----------
+
+
+    function splitText(selector) {
+        const els = document.querySelectorAll(selector);
+
+        els.forEach(el => {
+            const children = Array.from(el.childNodes);
+
+            children.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.textContent.replace(/\s+/g, ' ').trim();
+                    if (!text) return;
+
+                    const words = text.split(' ');
+                    const wrapper = document.createElement('span');
+                    wrapper.classList.add('text-node');
+
+                    wrapper.innerHTML = words.map(word => {
+                        const letters = word.split('').map(char =>
+                            `<span class="char">${char}</span>`
+                        ).join('');
+                        return `<span class="word">${letters}</span>`;
+                    }).join(' ');
+
+                    node.replaceWith(wrapper);
+
+                } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
+                    const words = node.textContent.trim().split(' ');
+
+                    node.innerHTML = words.map(word => {
+                        const letters = word.split('').map(char =>
+                            `<span class="char">${char}</span>`
+                        ).join('');
+                        return `<span class="word">${letters}</span>`;
+                    }).join(' ');
+                }
+            });
+
+            const observer = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    const delay = parseInt(el.dataset.delay) || 0;
+                    setTimeout(() => {
+                        el.querySelectorAll('.char').forEach(char => {
+                            char.classList.add('is-visible');
+                        });
+                    }, delay);
+                } else {
+                    el.querySelectorAll('.char').forEach(char => {
+                        char.classList.remove('is-visible');
+                    });
+                }
+            }, { threshold: 0.1 });
+
+            observer.observe(el);
+        });
+    }
+
+    splitText('.reveal-title');
 })

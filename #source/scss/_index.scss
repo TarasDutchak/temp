@@ -16,7 +16,9 @@
     text-transform: uppercase;
     font-weight: 400;
 
-    span {
+    .hero__redtext,
+    .hero__smspace,
+    .hero__lgspace {
         display: block;
     }
 }
@@ -88,7 +90,7 @@
         color: $neutral70;
         font-weight: 500;
 
-        span,
+
         a {
             color: $accentmain;
 
@@ -162,9 +164,7 @@
         font-weight: 500;
         text-transform: uppercase;
 
-        span {
-            color: $accentmain;
-        }
+
     }
 }
 
@@ -224,6 +224,36 @@
     }
 }
 
+a.gridbox::before,
+a.gridbox::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #f07020;
+    /* помаранчевий */
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+
+a.gridbox::before {
+    left: 0;
+    transform: translateY(-100%);
+    /* зверху */
+}
+
+a.gridbox::after {
+    right: 0;
+    transform: translateY(100%);
+    /* знизу */
+}
+
+a.gridbox:hover::before,
+a.gridbox:hover::after {
+    transform: translateY(0);
+}
+
 .gridbox {
     background: $neutral900;
     padding: 20px;
@@ -233,6 +263,12 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+
+
+
+
+
+
 
     &.v1 {
         height: 430px;
@@ -266,9 +302,16 @@ a.gridbox {
     color: #F3F1F0;
     font-size: 22px;
     line-height: 130%;
+    position: relative;
+    overflow: hidden;
+
+    span {
+        position: relative;
+        z-index: 2;
+    }
 
     &:hover {
-        background: $accentmain;
+        // background: $accentmain;
     }
 }
 
@@ -305,11 +348,10 @@ a.gridbox {
         font-size: 100px;
         font-weight: 500;
         line-height: 115%;
-        margin-bottom: 30px;
     }
 
     .descr {
-        margin: 0;
+        margin: 30px 0 0 0;
         text-transform: uppercase;
         color: #fff;
         font-size: 22px;
@@ -473,25 +515,38 @@ a.gridbox {
     p {
         color: $neutral30;
 
-        span {
+        .highlighted {
             font-size: 40px;
+            color: #FC4C01;
+
+            &>* {
+                line-height: 100%;
+                margin-bottom: -3px;
+            }
         }
 
-        i {
+        .orange-text {
             font-style: normal;
             font-weight: 500;
-            color: $accentmain;
         }
     }
 }
 
+
+
 .advantage-sect__img {
     position: relative;
+    overflow: hidden;
+    border-radius: 20px;
 
     img {
         width: 100%;
         vertical-align: top;
-        border-radius: 20px;
+
+    }
+
+    &.has-animation.animate-in:before {
+        background-color: #D3D3D3;
     }
 }
 
@@ -504,10 +559,6 @@ a.gridbox {
         font-size: 22px;
         line-height: 130%;
         font-weight: 500;
-
-        span {
-            color: $accentmain;
-        }
 
         &:last-child {
             margin-bottom: 0;
@@ -657,9 +708,14 @@ a.gridbox {
 
 // about us - text section
 .textsection {
+    .imgwrap {
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
     img {
         vertical-align: top;
-        border-radius: 20px;
         width: 100%;
     }
 }
@@ -700,6 +756,12 @@ a.gridbox {
     h6 {
         font-size: 16px;
     }
+}
+
+.benefits__item .orange-text,
+.orange-text,
+.highlighted {
+    margin: 0 0.25em;
 }
 
 @media(max-width:1499.8px) {
@@ -1145,9 +1207,18 @@ a.gridbox {
         margin-bottom: 10px;
     }
 
+    .hero__thumbpic  {
+        display: none;
+    }
+
+    .hero__title {
+        width: 100%;
+    }
 
 
-
+    .hero__mainpic {
+        height: 280px;
+    }
     .benefits .col-md-6:nth-child(2n) .benefits__item,
     .clients__rightcol {
         padding-right: calc((100vw - 520px) / 2);
@@ -1161,6 +1232,12 @@ a.gridbox {
     .clients__rightcol:before {
         width: calc((100vw - 521px) / 2);
     }
+
+    .benefits .col-md-6 .benefits__item {
+        padding-right: calc((100vw - 520px) / 2);
+        padding-left: calc((100vw - 520px) / 2);
+    }
+
 }
 
 @media(max-width:575.8px) {
@@ -1250,7 +1327,15 @@ a.gridbox {
         padding-top: 40px;
     }
 
+    .contact-link {
+        font-size: 16px;
+        padding-right: 44px;
+    }
 
+    .hero__info p {
+        max-width: 300px;
+        font-size: 15px;
+    }
 
 
 
@@ -1261,7 +1346,7 @@ a.gridbox {
     // }
 
     .hero__title {
-        font-size: 36px;
+        font-size: 42px;
     }
 
     .workwithtemp .title {
