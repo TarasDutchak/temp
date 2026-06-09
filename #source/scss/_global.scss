@@ -360,7 +360,7 @@ a:hover {
 .char {
     display: inline-block;
     transform: translateY(110%);
-    transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .char.is-visible {

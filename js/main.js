@@ -245,7 +245,10 @@ jQuery(document).ready(function ($) {
                         char.classList.remove('is-visible');
                     });
                 }
-            }, { threshold: 0.1 });
+            }, {
+                threshold: 0,
+                rootMargin: '0px 0px -15% 0px'
+            });
 
             observer.observe(el);
         });
