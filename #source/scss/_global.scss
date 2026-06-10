@@ -10,13 +10,19 @@ html {
 .main {
     flex: 1 1 auto;
     padding-top: 100px;
+
+    &>* {
+        background-color: #F3F1F0;
+        z-index: 2;
+        position: relative;
+    }
 }
 
 .pagewrapper {
     min-height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 body {
@@ -357,15 +363,36 @@ a:hover {
     
 }
 
-.char {
-    display: inline-block;
-    transform: translateY(110%);
-    transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
+// .char {
+//     display: inline-block;
+//     transform: translateY(110%);
+//     transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
+// }
+
+// .char.is-visible {
+//     transform: translateY(0);
+// }
+
+
+.reveal-title {
+    overflow: hidden;
 }
 
-.char.is-visible {
+.reveal-title.in-view .char {
     transform: translateY(0);
 }
+
+.reveal-title .char {
+    display: inline-block;
+    transform: translateY(100%);
+    transition: transform 3s cubic-bezier(0.16, 1, 0.3, 1);
+    /* без --char-index - всі букви одночасно */
+}
+
+
+
+
+
 
 
 

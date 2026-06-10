@@ -2,11 +2,11 @@ jQuery(document).ready(function ($) {
 
     // animation init
 
-    AOS.init({
-        // startEvent: 'DOMContentLoaded',
-        // once: false,
-        duration: 1200,
-    });
+    // AOS.init({
+    //     // startEvent: 'DOMContentLoaded',
+    //     // once: false,
+    //     duration: 1200,
+    // });
 
     // HEADER
 
@@ -118,65 +118,7 @@ jQuery(document).ready(function ($) {
 
 
 
-
-
-
-
-
-    // $('.has-animation').each(function () {
-    //     const el = this;
-
-    //     const observer = new IntersectionObserver(([entry]) => {
-    //         if (entry.isIntersecting) {
-    //             $(el).delay($(el).data('delay') || 0).queue(function () {
-    //                 $(this).addClass('animate-in');
-    //             });
-    //             observer.disconnect(); // запускаємо тільки раз
-    //         }
-    //     }, { threshold: 0.1 });
-
-    //     observer.observe(el);
-    // });
-    // // -----------
-    // function splitText(selector) {
-    //     const els = document.querySelectorAll(selector);
-
-    //     els.forEach(el => {
-    //         const targets = el.querySelectorAll('span').length > 0
-    //             ? el.querySelectorAll('span')
-    //             : [el];
-
-    //         targets.forEach((span, spanIndex) => {
-    //             const words = span.textContent.trim().split(' ');
-
-    //             span.innerHTML = words.map(word => {
-    //                 const letters = word.split('').map(char =>
-    //                     `<span class="char">${char}</span>`
-    //                 ).join('');
-    //                 return `<span class="word">${letters}</span>`;
-    //             }).join(' ');
-
-    //             span.querySelectorAll('.char').forEach(char => {
-    //                 char.style.transitionDelay = `${spanIndex * 0.2}s`;
-    //             });
-    //         });
-
-    //         const observer = new IntersectionObserver(([entry]) => {
-    //             if (entry.isIntersecting) {
-    //                 el.querySelectorAll('.char').forEach(char => {
-    //                     char.classList.add('is-visible');
-    //                 });
-    //             }
-    //         }, { threshold: 0.1 });
-
-    //         observer.observe(el);
-    //     });
-    // }
-
-    // splitText('.reveal-title');
-
-
-
+    // картинки анімація
     $('.has-animation').each(function () {
         const el = this;
 
@@ -196,63 +138,88 @@ jQuery(document).ready(function ($) {
     // -----------
 
 
-    function splitText(selector) {
-        const els = document.querySelectorAll(selector);
 
-        els.forEach(el => {
-            const children = Array.from(el.childNodes);
 
-            children.forEach(node => {
-                if (node.nodeType === Node.TEXT_NODE) {
-                    const text = node.textContent.replace(/\s+/g, ' ').trim();
-                    if (!text) return;
+    // плавинй скрол
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+    });
 
-                    const words = text.split(' ');
-                    const wrapper = document.createElement('span');
-                    wrapper.classList.add('text-node');
-
-                    wrapper.innerHTML = words.map(word => {
-                        const letters = word.split('').map(char =>
-                            `<span class="char">${char}</span>`
-                        ).join('');
-                        return `<span class="word">${letters}</span>`;
-                    }).join(' ');
-
-                    node.replaceWith(wrapper);
-
-                } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'BR') {
-                    const words = node.textContent.trim().split(' ');
-
-                    node.innerHTML = words.map(word => {
-                        const letters = word.split('').map(char =>
-                            `<span class="char">${char}</span>`
-                        ).join('');
-                        return `<span class="word">${letters}</span>`;
-                    }).join(' ');
-                }
-            });
-
-            const observer = new IntersectionObserver(([entry]) => {
-                if (entry.isIntersecting) {
-                    const delay = parseInt(el.dataset.delay) || 0;
-                    setTimeout(() => {
-                        el.querySelectorAll('.char').forEach(char => {
-                            char.classList.add('is-visible');
-                        });
-                    }, delay);
-                } else {
-                    el.querySelectorAll('.char').forEach(char => {
-                        char.classList.remove('is-visible');
-                    });
-                }
-            }, {
-                threshold: 0,
-                rootMargin: '0px 0px -15% 0px'
-            });
-
-            observer.observe(el);
-        });
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
     }
 
-    splitText('.reveal-title');
+    requestAnimationFrame(raf);
+
+
+
+    // тексти анімація
+    Splitting();
+
+    document.querySelectorAll('[data-splitting]').forEach(el => {
+        new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                const delay = parseInt(el.dataset.delay) || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('in-view');
+                }, delay);
+            } else {
+                entry.target.classList.remove('in-view');
+            }
+        }, { threshold: 0.1, rootMargin: '0px 0px -15% 0px' }).observe(el);
+    });
+
+
+
+
+    // об'єкти анімація
+    gsap.registerPlugin(ScrollTrigger); // спочатку реєструємо
+
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    let mm = gsap.matchMedia();
+
+    mm.add('(min-width: 768px)', () => {
+        gsap.from('.gsap1', {
+            scrollTrigger: { trigger: '.gsap1', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -400, y: -50,
+        });
+        gsap.from('.gsap2', {
+            scrollTrigger: { trigger: '.gsap2', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 250, y: -200,
+        });
+        gsap.from('.gsap3', {
+            scrollTrigger: { trigger: '.gsap3', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 400, y: 50,
+        });
+    });
+    mm.add('(max-width: 767px)', () => {
+        gsap.from('.gsap1', {
+            scrollTrigger: { trigger: '.gsap1', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -100, y: 30,
+        });
+        gsap.from('.gsap2', {
+            scrollTrigger: { trigger: '.gsap2', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 100, y: 50,
+        });
+        gsap.from('.gsap3', {
+            scrollTrigger: { trigger: '.gsap3', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -100, y: 30,
+        });
+    });
+
+
+
+
+
+
+
 })
+
+
+
