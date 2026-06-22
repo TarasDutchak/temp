@@ -84,12 +84,31 @@ h2 {
     &.white {
         color: #F3F1F0;
     }
+}
 
+h3 {
+    color: $neutral70;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 20px;
 
+    &.white {
+        color: #F3F1F0;
+    }
 }
 
 .dark-bg {
     background-color: $neutral900;
+}
+
+.grey-bg {
+    background: $neutral30;
+}
+
+.white-bg {
+    background: #fff;
 }
 
 .orange-text {
@@ -112,8 +131,13 @@ section {
     text-align: right;
 }
 
+.contact-link {
+    
+}
 
-
+.posrel {
+    position: relative;
+}
 
 
 
@@ -128,6 +152,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: -3px;
 
     svg {
         width: 100%;
@@ -405,12 +430,14 @@ a:hover {
 }
 
 .has-animation p,
-.has-animation img {
+.has-animation img,
+.has-animation video {
     opacity: 0;
 }
 
 .has-animation.animate-in p,
-.has-animation.animate-in img {
+.has-animation.animate-in img,
+.has-animation.animate-in video {
     animation: textHidden 0.1s 1.1s forwards;
 }
 

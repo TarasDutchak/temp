@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service</title>
+    <!-- <link rel="icon" type="image/x-icon" href="favicon.png"> -->
+
+    <link rel="stylesheet" href="css/lib/swiper.css">
+    <link rel="stylesheet" href="css/lib/bootstrap-grid.min.css">
+    <!-- <link rel="stylesheet" href="css/lib/aos.css"> -->
+    <link rel="stylesheet" href="css/lib/splitting.css">
+
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="pagewrapper">
+        <header class="header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-2 col-md-3 col-4">
+                        <a href="#" class="header__logo">
+                            <img src="img/general/logo.svg" alt="logo">
+                        </a>
+                    </div>
+                    <div class="col-xl-5 navcol">
+                        <nav class="site-nav" aria-label="Primary">
+                            <ul class="header__menu">
+                                <li class="menu-item"><a href="#">Про нас</a></li>
+                                <li class="menu-item menu-item-has-children">
+                                    <span>
+                                        Послуги
+                                        <i>
+                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M14.728 6.54492L9.00071 12.2722L3.27344 6.54492"
+                                                    stroke="#CA3D01" stroke-width="2" stroke-linecap="square"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </i>
+                                    </span>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item"><a href="#">Укладання бруківки</a>
+                                        </li>
+                                        <li class="menu-item"><a href="#">Механізоване укладання</a></li>
+                                        <li class="menu-item"><a href="#">Ручне укладання бруківки</a>
+                                        </li>
+                                        <li class="menu-item"><a href="#">Проєктування благоустрою</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item"><a href="#">Ціни</a></li>
+                                <li class="menu-item"><a href="#">Портфоліо</a></li>
+                                <li class="menu-item"><a href="#">Новини</a></li>
+                                <li class="menu-item"><a href="#">Контакти</a></li>
+                            </ul>
+                            <a href="#" class="calculate-btn">
+                                Розрахувати проєкт
+                                <span class="circle-animation">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
+                                            fill="#FEA680" />
+                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01" />
+                                    </svg>
+                                    <div class="calculate__icons">
+                                        <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
+                                        <img class="hover-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
+                                    </div>
+                                </span>
+                            </a>
+                        </nav>
+                        <button class="closemenu">
+                            <img src="img/general/close.png" alt="close menu">
+                        </button>
+                    </div>
+                    <div class="col-xl-5 col-md-9 col-8">
+                        <div class="header__actions">
+                            <a href="tel:+380673840653" class="header__tel">
+                                <i class="icon-tel-icon"></i>
+                                <span>+38 (067) 384-06-53</span>
+                            </a>
+                            <a href="#" class="calculate-btn">
+                                Розрахувати проєкт
+                                <span class="circle-animation">
+                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
+                                            fill="#FEA680" />
+                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01" />
+                                    </svg>
+                                    <div class="calculate__icons">
+                                        <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
+                                        <img class="hover-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
+                                    </div>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="mebubtn" aria-label="Відкрити меню" aria-expanded="false"
+                    aria-controls="site-nav">
+                    <img src="img/general/menu.png" alt="menu">
+                </button>
+            </div>
+            <div class="menu-overlay" aria-hidden="true"></div>
+        </header>
+
+        <main class="main">
+            <section class="hero hero_service">
+                <div class="container">
+                    <div class="hero__wrapper">
+                        <h1 class="hero__title ">
+                            <span class="hero__redtext reveal-title" data-splitting data-delay="200">темп <span
+                                    class="black-color">- покриття,</span></span>
+                            <span class="hero__smspace reveal-title" data-splitting data-delay="300">які служать</span>
+                            <span class="hero__lgspace reveal-title" data-splitting data-delay="400">роками</span>
+                        </h1>
+
+                        <div class="hero__description d-flex align-items-end">
+                            <div class="hero__description-left">
+                                <div class="intro">
+                                    <p>
+                                        Професійне укладання тротуарної плитки
+                                        і благоустрій територій для житлових комплексів, комерційних і промислових
+                                        об'єктів
+                                    </p>
+                                </div>
+                                <div class="btngroup">
+                                    <a href="#" class="contact-link">
+                                        Зв’язатись
+                                        <span class="circle-animation">
+                                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
+                                                    fill="#FEA680" />
+                                                <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01" />
+                                            </svg>
+                                            <div class="calculate__icons">
+                                                <img class="default-ic" src="img/general/arrow-circlebtn.svg"
+                                                    alt="icon">
+                                                <img class="hover-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
+                                            </div>
+                                        </span>
+                                    </a>
+                                    <a href="#" class="contact-link ">
+                                        Види робіт
+                                        <span class="circle-animation">
+                                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
+                                                    fill="#AAAAAA" />
+                                            </svg>
+
+                                            <div class="calculate__icons">
+                                                <img class="default-ic" src="img/general/arrow-circlebtn-orange.svg"
+                                                    alt="icon">
+                                                <img class="hover-ic" src="img/general/arrow-circlebtn-orange.svg"
+                                                    alt="icon">
+                                            </div>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="hero__description-right">
+                                <a href="#" target="_blank" class="google-box">
+                                    <img class="google-box__logo" src="img/general/google.png" alt="google analitics">
+                                    <div class="google-box_wrap">
+                                        <ul>
+                                            <li>1000+ реалізованих об'єктів</li>
+                                            <li>24 роки досвіду</li>
+                                        </ul>
+                                    </div>
+                                    <button class="linkarr-anim">
+                                        <img class="default-ic" src="img/general/link-arrow-orange.svg" alt="icon">
+                                        <img class="hover-ic" src="img/general/link-arrow-orange.svg" alt="icon">
+                                    </button>
+                                </a>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="hero__mainpic">
+                    <img src="img/main/hero.jpg" alt="img">
+                </div> -->
+            </section>
+
+            <div class="slider-wrapper">
+                <div class="swiper imageslider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="imgwrapper">
+                                <img src="img/service/slide.png" alt="img">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="imgwrapper">
+                                <img src="img/service/slide.png" alt="img">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="imgwrapper">
+                                <img src="img/service/slide.png" alt="img">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container posrel">
+                        <div class="swiper-pagination linepag v2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="benefits no-sticky p0">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <div class="benefits__item">
+                            <p class=" reveal-title" data-splitting data-delay="0">
+                                <span class="orange-text">професійні </span>
+                                бригади
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="benefits__item">
+                            <p class=" reveal-title" data-splitting data-delay="100">
+                                <span class="orange-text">найсучасніші </span>
+                                технології
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="benefits__item">
+                            <p class=" reveal-title" data-splitting data-delay="200">
+                                <span class="orange-text">без субпідрядників </span><br>
+                                і прихованих витрат
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="benefits__item">
+                            <p class=" reveal-title" data-splitting data-delay="300">
+                                У <span class="orange-text">8-10 разів швидше</span>,<br>
+                                ніж інші бригади
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="services white-bg">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>
+                            <span class="orange-text">Укладання</span><br> тротуарної плитки
+                        </h2>
+                        <div class="introsect">
+                            <p>
+                                ТЕМП виконує повний цикл послуг з укладання ФЕМ — від розробки дизайн-проєкту до
+                                професійного мощення тротуарної плитки. Завдяки багаторічному досвіду та власним
+                                технологічним рішенням ми якісно виконуємо укладання бруківки під великі навантаження,
+                                реалізуємо проєкти для великих площ та об’єктів будь-якої складності.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stickysteps">
+                    <div class="stickysteps__item">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <p class="stepnum">
+                                        01/
+                                    </p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <a href="#" class="stickysteps__info">
+                                        <div class="descr">
+                                            <h3>
+                                                <span class="orange-text">Механізоване</span><br> укладання
+                                                бруківки
+
+                                                <button class="linkarr-anim">
+                                                    <img class="default-ic" src="img/general/link-arrow-orange.svg"
+                                                        alt="icon">
+                                                    <img class="hover-ic" src="img/general/link-arrow-orange.svg"
+                                                        alt="icon">
+                                                </button>
+                                            </h3>
+                                            <p>
+                                                Машинне укладання ФЕМ дозволяє ТЕМП в декілька разів пришвидшити
+                                                мощення
+                                                бруківкою великих площ. В нашому арсеналі є найсучасніша укладальна
+                                                техніка провідного німецького виробника OPTIMAS. Такий механізований
+                                                метод укладання бруківки підходить для мощення промислових
+                                                територій,
+                                                складів, логістичних центрів, паркінгів, територій торговельних
+                                                центрів
+                                                та інших масштабних об'єктів благоустрою. Саме тому, ТЕМП завжди
+                                                здає
+                                                роботу вчасно без прострочки термінів.
+                                            </p>
+                                        </div>
+                                        <div class="imgwrap">
+                                            <img src="img/service/step1.jpg" alt="img">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stickysteps__item">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <p class="stepnum">
+                                        02/
+                                    </p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <a href="#" class="stickysteps__info">
+                                        <div class="descr">
+                                            <h3>
+                                                <span class="orange-text">Ручне</span> вкладання бруківки
+
+                                                <button class="linkarr-anim">
+                                                    <img class="default-ic" src="img/general/link-arrow-orange.svg"
+                                                        alt="icon">
+                                                    <img class="hover-ic" src="img/general/link-arrow-orange.svg"
+                                                        alt="icon">
+                                                </button>
+                                            </h3>
+                                            <p>
+                                                Ручне укладання бруківки ТЕМП застосовує там, де важлива висока
+                                                деталізація: складні візерунки, криволінійні ділянки, прилеглі зони біля
+                                                будівель. Проте все одно, підготовчі і завершальні роботи виконуються за
+                                                допомогою техніки, що забеспечує набагато кращу якість основи,
+                                                довговічність покриття і скорочує терміни реалізації порявняно з
+                                                виключно ручним методом укладання.
+                                            </p>
+                                        </div>
+                                        <div class="imgwrap">
+                                            <img src="img/service/step1.jpg" alt="img">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stickysteps__item">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <p class="stepnum">
+                                        03/
+                                    </p>
+                                </div>
+                                <div class="col-lg-7">
+                                    <a href="#" class="stickysteps__info">
+                                        <div class="descr">
+                                            <h3>
+                                                <span class="orange-text">Проєктування</span> благоустрою
+
+                                                <button class="linkarr-anim">
+                                                    <img class="default-ic" src="img/general/link-arrow-orange.svg"
+                                                        alt="icon">
+                                                    <img class="hover-ic" src="img/general/link-arrow-orange.svg"
+                                                        alt="icon">
+                                                </button>
+                                            </h3>
+                                            <p>
+                                                ТЕМП спеціалізується на комплексному благоустрої територій для
+                                                приватних, комерційних та громадських об'єктів. Перед початком мощення
+                                                ФЕМ розробляємо детальний план благоустрою території: схему укладання,
+                                                дренаж, бордюри, прив'язку до існуючих конструкцій. Благоустрій
+                                                територій і бруківка виконуються з урахуванням навантажень, особливостей
+                                                рельєфу та вимог до довговічності. Проектування дозволяє уникнути
+                                                помилок на етапі монтажу та точно прорахувати обсяг матеріалів. Ви
+                                                отримуєте готове рішення — а не набір окремих послуг.
+                                            </p>
+                                        </div>
+                                        <div class="imgwrap">
+                                            <img src="img/service/step1.jpg" alt="img">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="workobjects dark-bg">
+                <div class="container">
+                    <h2 class="white">
+                        укладаємо бруківку<br> на таких об’єктах:
+                    </h2>
+                </div>
+            </section>
+
+
+
+
+
+        </main>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-7 col-md-6">
+                            <a class="footer__logo" href="#">
+                                <img src="img/general/footer-logo.svg" alt="logo">
+                            </a>
+                        </div>
+                        <div class="col-xxl-4 col-xl-3 col-lg-5 col-md-6">
+                            <div class="footer__contact-info">
+                                <ul class="addrlist">
+                                    <li>
+                                        <a href="tel:+380673840653">
+                                            <i class="icon-tel-icon"></i>
+                                            +38 (067) 384-06-53
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="icon-footer-loc"></i>
+                                            м. Тернопіль, вул. Протасевича 4
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="mailto:temp.bruk@gmail.com">
+                                            <i class="icon-footer-email"></i>
+                                            temp.bruk@gmail.com
+                                        </a>
+
+                                    </li>
+                                </ul>
+                                <ul class="soclist">
+                                    <li>
+                                        <a href="#" target="_blank">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M24.9339 5.84104L21.3083 23.0011C21.0414 24.2179 20.32 24.5137 19.3133 23.9405L13.7921 19.8539L11.1309 22.4316C10.8733 22.7644 10.4739 22.9771 10.0267 22.9771C10.023 22.9771 10.0212 22.9771 10.0175 22.9771L10.4095 17.3298L20.6421 8.04337C21.0838 7.64951 20.5427 7.42576 19.9556 7.81963L7.31396 15.819L1.86641 14.1104C0.688555 13.735 0.655427 12.927 2.11486 12.3463L23.4008 4.10284C24.3909 3.74041 25.2522 4.33953 24.932 5.84289L24.9339 5.84104Z"
+                                                    fill="#D3D3D3" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" target="_blank">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M24.917 8.16699C24.9168 5.35969 22.6413 3.08398 19.834 3.08398H8.16699C5.3598 3.08416 3.08416 5.3598 3.08398 8.16699V19.834C3.08398 22.6413 5.35969 24.9168 8.16699 24.917H19.834C22.6414 24.917 24.917 22.6414 24.917 19.834V8.16699ZM26.417 19.834C26.417 23.4699 23.4699 26.417 19.834 26.417H8.16699C4.53127 26.4168 1.58398 23.4697 1.58398 19.834V8.16699C1.58416 4.53138 4.53138 1.58416 8.16699 1.58398H19.834C23.4697 1.58398 26.4168 4.53127 26.417 8.16699V19.834Z"
+                                                    fill="#D3D3D3" />
+                                                <path
+                                                    d="M11.5551 9.14161C12.5663 8.61695 13.7173 8.42476 14.8441 8.5918C15.9937 8.76227 17.0585 9.29835 17.8803 10.1201C18.7018 10.9418 19.2372 12.0059 19.4076 13.1553C19.5747 14.2822 19.3825 15.4331 18.8578 16.4443C18.3331 17.4556 17.5024 18.2759 16.4848 18.7881C15.4671 19.3002 14.3136 19.4788 13.1889 19.2979C12.0643 19.1168 11.0256 18.5856 10.2201 17.7803C9.41451 16.9747 8.88258 15.9354 8.70156 14.8106C8.52057 13.6857 8.69915 12.5323 9.21133 11.5147C9.72356 10.497 10.5438 9.66634 11.5551 9.14161ZM14.6244 10.0752C13.8095 9.95437 12.9767 10.0942 12.2455 10.4736C11.5145 10.8531 10.9215 11.4538 10.5512 12.1895C10.181 12.9252 10.0522 13.7591 10.183 14.5723C10.3139 15.3856 10.6982 16.1372 11.2807 16.7197C11.863 17.302 12.6141 17.6855 13.4271 17.8164C14.2405 17.9473 15.0751 17.8186 15.8109 17.4482C16.5467 17.0779 17.1474 16.4851 17.5268 15.7539C17.9062 15.0227 18.0451 14.1899 17.9242 13.375C17.8009 12.5441 17.4137 11.7747 16.8197 11.1807C16.2255 10.5865 15.4557 10.1985 14.6244 10.0752Z"
+                                                    fill="#D3D3D3" />
+                                                <path
+                                                    d="M21.9838 7.27997C22.0301 7.59207 21.9767 7.91081 21.8314 8.19085C21.6861 8.4709 21.4562 8.698 21.1744 8.83985C20.8926 8.9817 20.5732 9.03107 20.2617 8.98095C19.9502 8.93082 19.6624 8.78375 19.4393 8.56066C19.2162 8.33756 19.0692 8.0498 19.0191 7.7383C18.9689 7.42681 19.0183 7.10744 19.1601 6.82562C19.302 6.5438 19.5291 6.31388 19.8091 6.16857C20.0892 6.02325 20.4079 5.96995 20.72 6.01623C21.0384 6.06343 21.3331 6.21177 21.5607 6.43934C21.7882 6.66691 21.9366 6.96163 21.9838 7.27997Z"
+                                                    fill="#D3D3D3" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="textbtn" href="#" target="_blank">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <circle class="hstroke" cx="14.0006" cy="15.3063" r="10.2453"
+                                                    stroke="#D3D3D3" stroke-width="1.2" />
+                                                <rect class="hstroke" x="6.36758" y="10.4184" width="15.264"
+                                                    height="7.424" rx="3.712" stroke="#D3D3D3" stroke-width="1.2" />
+                                                <circle class="hfill" cx="9.68636" cy="14.1307" r="1.43733"
+                                                    fill="#D3D3D3" />
+                                                <circle class="hfill" cx="18.1805" cy="14.1307" r="1.43733"
+                                                    fill="#D3D3D3" />
+                                                <rect class="hfill" x="0.933594" y="13.8691" width="2.87467"
+                                                    height="2.87467" rx="1" fill="#D3D3D3" />
+                                                <rect class="hfill" x="12.5625" y="0.933594" width="2.87467"
+                                                    height="4.18133" rx="1" fill="#D3D3D3" />
+                                                <rect class="hfill" x="24.1914" y="13.8691" width="2.87467"
+                                                    height="2.87467" rx="1" fill="#D3D3D3" />
+                                            </svg>
+                                            Телеграм-бот
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 offset-xxl-1 col-xl-3 col-lg-4">
+                            <div class="footer__item">
+                                <p class="title">послуги</p>
+                                <ul>
+                                    <li><a href="#">Укладання тротуарної плитки</a></li>
+                                    <li><a href="#">Механізоване укладання</a></li>
+                                    <li><a href="#">Дизайн-проєкт мощення</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-xl-4 col-lg-4">
+                            <div class="footer__item ">
+                                <p class="title">Компанія</p>
+                                <ul class="listcol2">
+                                    <li><a href="#">Про нас</a></li>
+                                    <li><a href="#">Портфоліо</a></li>
+                                    <li><a href="#">Блог</a></li>
+                                    <li><a href="#">Контакти</a></li>
+                                    <li><a href="#">Політика конфіденційності</a></li>
+                                    <li><a href="#">Умови користування</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xxl-2 col-xl-2 col-lg-4">
+                            <div class="footer__item">
+                                <p class="title">Міста, де ми працюємо:</p>
+                                <div class="states">
+                                    <button type="button" aria-expanded="false">Україна</button>
+                                    <ul>
+                                        <li><a href="#">Тернопіль</a></li>
+                                        <li><a href="#">Івано-Франківськ</a></li>
+                                        <li><a href="#">Київ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__rights">
+                <div class="container">
+                    <p>©2026. Темп Брук. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+</body>
+<script src="js/lib/jquery.js"></script>
+<script src="js/lib/swiper.js"></script>
+<!-- <script src="js/lib/aos.js"></script> -->
+<!-- плавний скрол + відслідковування скролу -->
+<script src="js/lib/lenis.js"></script>
+<!-- розділення тексту на елементи для анімації -->
+<script src="js/lib/splitting.js"></script>
+<!-- анімація -->
+<script src="js/lib/gsap.min.js"></script>
+<script src="js/lib/ScrollTrigger.min.js"></script>
+
+<script src="js/lib/jquery.inputmask.min.js"></script>
+<script src="js/main.js"></script>
+
+</html>

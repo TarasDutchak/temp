@@ -25,6 +25,9 @@
 
 .hero__redtext {
     color: $accentmain;
+    .black-color {
+        color: #1d1d1d
+    }
 }
 
 .hero__smspace {
@@ -44,7 +47,7 @@
     border-radius: 20px;
     overflow: hidden;
 
-    img {
+    img, video {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -231,7 +234,7 @@ a.gridbox::after {
     top: 0;
     width: 50%;
     height: 100%;
-    background: #f07020;
+    background: #CA3D01;
     /* помаранчевий */
     transition: transform 0.5s ease;
     z-index: 0;
@@ -517,7 +520,7 @@ a.gridbox {
 
         .highlighted {
             font-size: 40px;
-            color: #FC4C01;
+            color: #CA3D01;
 
             &>* {
                 line-height: 100%;
@@ -1057,7 +1060,7 @@ a.gridbox {
 
     .hero__smspace,
     .hero__lgspace {
-        padding-left: 0;
+        padding-left: 0 !important;
     }
 
     .hero__thumbpic {
@@ -1154,7 +1157,8 @@ a.gridbox {
 
 @media(max-width:767.8px) {
 
-    .hero__thumbpic img {
+    .hero__thumbpic img,
+    .hero__thumbpic video {
         display: none;
     }
 

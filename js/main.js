@@ -214,6 +214,28 @@ jQuery(document).ready(function ($) {
     });
 
 
+    // -------------------------------------SERVICE-------------------------------------
+    var swiper = new Swiper(".imageslider", {
+        // effect: "fade",
+        loop: true,
+        speed: 900,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        // fadeEffect: {
+        //     crossFade: true,
+        // },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+    });
+
+
+
+
+
 
 
 

@@ -8,7 +8,6 @@
     <title>TEMP</title>
     <!-- <link rel="icon" type="image/x-icon" href="favicon.png"> -->
 
-
     <link rel="stylesheet" href="css/lib/swiper.css">
     <link rel="stylesheet" href="css/lib/bootstrap-grid.min.css">
     <!-- <link rel="stylesheet" href="css/lib/aos.css"> -->
@@ -39,7 +38,7 @@
                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M14.728 6.54492L9.00071 12.2722L3.27344 6.54492"
-                                                    stroke="#FC4C01" stroke-width="2" stroke-linecap="square"
+                                                    stroke="#CA3D01" stroke-width="2" stroke-linecap="square"
                                                     stroke-linejoin="round" />
                                             </svg>
                                         </i>
@@ -67,7 +66,7 @@
                                         <path
                                             d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
                                             fill="#FEA680" />
-                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#FC4C01" />
+                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01" />
                                     </svg>
                                     <div class="calculate__icons">
                                         <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
@@ -94,7 +93,7 @@
                                         <path
                                             d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
                                             fill="#FEA680" />
-                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#FC4C01" />
+                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01" />
                                     </svg>
                                     <div class="calculate__icons">
                                         <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
@@ -106,7 +105,7 @@
                     </div>
                 </div>
 
-                <button class="mebubtn">
+                <button type="button" class="mebubtn" aria-label="Відкрити меню" aria-expanded="false" aria-controls="site-nav">
                     <img src="img/general/menu.png" alt="menu">
                 </button>
             </div>
@@ -123,7 +122,10 @@
                             <span class="hero__lgspace reveal-title" data-splitting data-delay="400">бруківки</span>
                         </h1>
                         <div class="hero__thumbpic has-animation animation-btt" data-delay="10">
-                            <img src="img/main/hero-small.jpg" alt="img">
+                            <!-- <img src="img/main/hero-small.jpg" alt="img"> -->
+                            <video autoplay="" loop="" muted="" playsinline="">
+                                <source src="video/hero.mp4" type="video/mp4">
+                            </video>
                         </div>
                         <div class="hero__info">
                             <a href="#" class="contact-link">
@@ -134,7 +136,7 @@
                                         <path
                                             d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
                                             fill="#FEA680" />
-                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#FC4C01" />
+                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01" />
                                     </svg>
                                     <div class="calculate__icons">
                                         <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
@@ -421,10 +423,10 @@
                                     </div>
                                     <h4>
                                         Проект “consectetur adipiscing elit”
-                                        <button class="linkarr-anim">
+                                        <span class="linkarr-anim">
                                             <img class="default-ic" src="img/general/link-arrow-orange.svg" alt="icon">
                                             <img class="hover-ic" src="img/general/link-arrow-orange.svg" alt="icon">
-                                        </button>
+                                        </span>
                                     </h4>
                                     <p>
                                         Завдяки багаторічній експертизі і застосуванні технологій лазерного планування
@@ -443,10 +445,10 @@
                                     </div>
                                     <h4>
                                         Проект “Lorem ipsum dolor sit amet”
-                                        <button class="linkarr-anim">
+                                        <span class="linkarr-anim">
                                             <img class="default-ic" src="img/general/link-arrow-orange.svg" alt="icon">
                                             <img class="hover-ic" src="img/general/link-arrow-orange.svg" alt="icon">
-                                        </button>
+                                        </span>
                                     </h4>
                                 </a>
                             </div>
@@ -457,10 +459,10 @@
                                     </div>
                                     <h4>
                                         Проект “1”
-                                        <button class="linkarr-anim">
+                                        <span class="linkarr-anim">
                                             <img class="default-ic" src="img/general/link-arrow-orange.svg" alt="icon">
                                             <img class="hover-ic" src="img/general/link-arrow-orange.svg" alt="icon">
-                                        </button>
+                                        </span>
                                     </h4>
                                     <p>
                                         Завдяки багаторічній експертизі і застосуванні технологій лазерного планування
@@ -481,7 +483,7 @@
                                     <path
                                         d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
                                         fill="#FEA680"></path>
-                                    <rect x="5" y="5" width="50" height="50" rx="25" fill="#FC4C01"></rect>
+                                    <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01"></rect>
                                 </svg>
                                 <div class="calculate__icons">
                                     <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
@@ -515,7 +517,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-12 text-end text-md-center">
-                                <button class="contact-link">
+                                <button type="submit" class="contact-link">
                                     розрахувати проєкт
                                     <span class="circle-animation">
                                         <svg width="60" height="60" viewBox="0 0 60 60" fill="none"
@@ -523,7 +525,7 @@
                                             <path
                                                 d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
                                                 fill="#FEA680"></path>
-                                            <rect x="5" y="5" width="50" height="50" rx="25" fill="#FC4C01"></rect>
+                                            <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01"></rect>
                                         </svg>
                                         <div class="calculate__icons">
                                             <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
@@ -559,7 +561,7 @@
                                         <path
                                             d="M4 45C7.30315 50.7192 12.4018 55.1891 18.5052 57.7164C24.6087 60.2436 31.3757 60.687 37.7569 58.9778C44.1381 57.2685 49.7768 53.5022 53.7985 48.2628C57.8201 43.0235 60 36.604 60 30C60 23.396 57.8201 16.9765 53.7985 11.7372C49.7768 6.49784 44.1381 2.73148 37.7569 1.02224C31.3757 -0.687012 24.6087 -0.243627 18.5052 2.28362C12.4018 4.81087 7.30315 9.28075 4 15L4.82025 15.4734C8.01915 9.93466 12.9569 5.60586 18.8677 3.15837C24.7785 0.710881 31.332 0.28149 37.5118 1.93679C43.6916 3.5921 49.1523 7.23958 53.0471 12.3135C56.9418 17.3875 59.0529 23.6044 59.0529 30C59.0529 36.3956 56.9418 42.6125 53.0471 47.6865C49.1523 52.7604 43.6916 56.4079 37.5118 58.0632C31.332 59.7185 24.7785 59.2891 18.8677 56.8416C12.9569 54.3941 8.01915 50.0653 4.82025 44.5266L4 45Z"
                                             fill="#fff"></path>
-                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#FC4C01"></rect>
+                                        <rect x="5" y="5" width="50" height="50" rx="25" fill="#CA3D01"></rect>
                                     </svg>
                                     <div class="calculate__icons">
                                         <img class="default-ic" src="img/general/arrow-circlebtn.svg" alt="icon">
@@ -754,23 +756,21 @@
     </div>
 
 
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/swiper.js"></script>
+    <!-- <script src="js/lib/aos.js"></script> -->
+    <!-- плавний скрол + відслідковування скролу -->
+    <script src="js/lib/lenis.js"></script>
+    <!-- розділення тексту на елементи для анімації -->
+    <script src="js/lib/splitting.js"></script>
+    <!-- анімація -->
+    <script src="js/lib/gsap.min.js"></script>
+    <script src="js/lib/ScrollTrigger.min.js"></script>
 
-
-
+    <script src="js/lib/jquery.inputmask.min.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
-<script src="js/lib/jquery.js"></script>
-<script src="js/lib/swiper.js"></script>
-<!-- <script src="js/lib/aos.js"></script> -->
- <!-- плавний скрол + відслідковування скролу -->
-<script src="js/lib/lenis.js"></script>
-<!-- розділення тексту на елементи для анімації -->
-<script src="js/lib/splitting.js"></script>
-<!-- анімація -->
-<script src="js/lib/gsap.min.js"></script>
-<script src="js/lib/ScrollTrigger.min.js"></script>
 
-<script src="js/lib/jquery.inputmask.min.js"></script>
-<script src="js/main.js"></script>
 
 </html>
