@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
 
-    // animation init
+    // AOS init
 
     // AOS.init({
     //     // startEvent: 'DOMContentLoaded',
@@ -8,7 +8,7 @@ jQuery(document).ready(function ($) {
     //     duration: 1200,
     // });
 
-    // HEADER
+    // ------------------------------------- Фіксований HEADER -------------------------------------
 
     $(window).on('scroll load', function () {
         if ($(this).scrollTop() > 10) {
@@ -18,7 +18,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    // submenu
+    // ------------------------------------- Submenu (HEADER) -------------------------------------
     $('.menu-item-has-children span').click(function () {
         $(this).toggleClass('active');
         $(this).next('.sub-menu').toggleClass('show');
@@ -31,7 +31,7 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    // mob
+    // ------------------------------------- Mobile Menu (HEADER) -------------------------------------
     function openMobileMenu() {
         $('.navcol, .menu-overlay').addClass('open');
         $('body').addClass('menu-open');
@@ -45,7 +45,7 @@ jQuery(document).ready(function ($) {
     $('.mebubtn').click(openMobileMenu);
     $('.closemenu, .menu-overlay').click(closeMobileMenu);
 
-    // textsldier
+    // ------------------------- Textsldier - Головна сторінка (.workwithtemp) ------------------------------
 
     var swiper = new Swiper(".textslider", {
         effect: "fade",
@@ -64,7 +64,7 @@ jQuery(document).ready(function ($) {
         },
     });
 
-    // logo carousel
+    // ------------------------------------- Слайдер Логотипів -------------------------------------
     var swiper = new Swiper(".logoslider", {
         // slidesPerView: 4.5,
         spaceBetween: 10,
@@ -95,7 +95,7 @@ jQuery(document).ready(function ($) {
         },
     });
 
-    // inputmask - tel
+    // ------------------------------------- Інпут маска для телефону -------------------------------------
     $('.telnum').inputmask({
         "mask": "+ 38 (999) 999-99-99",
         showMaskOnHover: false,
@@ -103,6 +103,7 @@ jQuery(document).ready(function ($) {
     });
 
     // footer міста
+    // ------------------------------------- Footer - Міста, де ми працюємо: -------------------------------------
     $('.states').on('click', 'button', function (e) {
         e.preventDefault();
 
@@ -114,14 +115,10 @@ jQuery(document).ready(function ($) {
         $list.stop(true, true).slideToggle(300);
     });
 
-
-
-
-
     // картинки анімація
+    // -------------------- Анімація блоку - як на головній картинка в Hero секції ------------------------
     $('.has-animation').each(function () {
         const el = this;
-
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
                 $(el).delay($(el).data('delay') || 0).queue(function () {
@@ -135,28 +132,20 @@ jQuery(document).ready(function ($) {
         observer.observe(el);
     });
 
-    // -----------
-
-
-
-
-    // плавинй скрол
+    // ------------------------------------- Плавний скрол сторінок -------------------------------------
     const lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smooth: true,
     });
-
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
-
     requestAnimationFrame(raf);
 
-
-
     // тексти анімація
+    // --------------------------- Анімація текстів (букви вилазять знизу вверх) ---------------------------
     Splitting();
 
     document.querySelectorAll('[data-splitting]').forEach(el => {
@@ -172,11 +161,9 @@ jQuery(document).ready(function ($) {
         }, { threshold: 0.1, rootMargin: '0px 0px -15% 0px' }).observe(el);
     });
 
-
-
-
     // об'єкти анімація
-    gsap.registerPlugin(ScrollTrigger); // спочатку реєструємо
+    // ---------------------- Анімація об'єктів при скролі (секція - .objects) ------------------------------
+    gsap.registerPlugin(ScrollTrigger);
 
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -214,34 +201,295 @@ jQuery(document).ready(function ($) {
     });
 
 
-    // -------------------------------------SERVICE-------------------------------------
+    // --------------------------- Слайдер з картинками - сторінка сервісів --------------------------------
     var swiper = new Swiper(".imageslider", {
-        // effect: "fade",
         loop: true,
         speed: 900,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
         },
-        // fadeEffect: {
-        //     crossFade: true,
-        // },
         autoplay: {
             delay: 4000,
             disableOnInteraction: false,
         },
     });
 
+    // ----------------------------------------- Акордеони ----------------------------------------------
+    $('.accordeon-wrap').on('click', '.accordeon__header', function () {
+        const $header = $(this);
+        const $row = $header.closest('.accordeon__row');
+        const $body = $row.find('.accordeon__body');
+        const $wrap = $header.closest('.accordeon-wrap');
+        const isOpen = $header.hasClass('active');
 
+        $wrap.find('.accordeon__row').not($row).each(function () {
+            const $item = $(this);
+            $item.removeClass('active');
+            $item.find('.accordeon__header').removeClass('active');
+            $item.find('.accordeon__body').stop(true, true).slideUp(300);
+        });
 
+        if (isOpen) {
+            $row.removeClass('active');
+            $header.removeClass('active');
+            $body.stop(true, true).slideUp(300);
+        } else {
+            $row.addClass('active');
+            $header.addClass('active');
+            $body.stop(true, true).slideDown(300);
+        }
+    });
+    // Відкриваємо перший айтем по замовчуванню в кожному .accordeon-wrap
+    $('.accordeon-wrap').each(function () {
+        const $firstRow = $(this).find('.accordeon__row').first();
 
+        if (!$firstRow.length) {
+            return;
+        }
 
+        $firstRow.addClass('active');
+        $firstRow.find('.accordeon__header').addClass('active');
+        $firstRow.find('.accordeon__body').show();
+    });
+
+    // ---------------------------------- Fancybox - галереї ---------------------------------------
+    Fancybox.bind('.hidden-gallery [data-fancybox]', {
+        // Your custom options
+    });
+
+    $('.js-gallery-open').on('click', function (e) {
+        e.preventDefault();
+
+        const $firstLink = $(this)
+            .closest('.accordeon__body')
+            .find('.hidden-gallery [data-fancybox]')
+            .first();
+
+        if ($firstLink.length) {
+            $firstLink[0].click();
+        }
+    });
+
+    // ------------------------- Кнопка "Переглянути більше" (секція .price) ---------------------------
+    $('.showmorebtn').on('click', function (e) {
+        e.preventDefault();
+        $(this).toggleClass('active');
+    });
+
+    // ------------------------------------- TECHNOLOGY -------------------------------------
+    // Masonry-сітка: блоки йдуть 1-2-3 / 4-5-6, у колонках підтягуються вгору
+    let technologyResizeTimer;
+
+    // Кількість колонок залежно від ширини екрана
+    function getTechnologyColCount() {
+        if (window.innerWidth >= 992) {
+            return 3;
+        }
+
+        if (window.innerWidth >= 768) {
+            return 2;
+        }
+
+        return 1;
+    }
+
+    // Розкладає .technology__item по колонках по черзі (1→col1, 2→col2, 3→col3, 4→col1...)
+    function buildTechnologyGrid() {
+        const $grid = $('.technology__grid');
+
+        if (!$grid.length) {
+            return;
+        }
+
+        let $items = $grid.children('.technology__item');
+
+        // Після першої збірки блоки вже в колонках — відновлюємо порядок через data-order
+        if (!$items.length) {
+            $items = $grid.find('.technology__item').sort(function (a, b) {
+                return (+$(a).data('order') || 0) - (+$(b).data('order') || 0);
+            });
+        } else {
+            $items.each(function (index) {
+                $(this).attr('data-order', index);
+            });
+        }
+
+        const colCount = getTechnologyColCount();
+        const $columns = [];
+
+        for (let i = 0; i < colCount; i++) {
+            $columns.push($('<div class="technology__col"></div>'));
+        }
+
+        $items.detach().each(function (index) {
+            $columns[index % colCount].append(this);
+        });
+
+        $grid.empty().append($columns);
+    }
+
+    // Ховає plusbtn, якщо текст повністю вміщується без розгортання
+    function updateTechnologyButtons() {
+        $('.technology__item').each(function () {
+            const $item = $(this);
+            const $descr = $item.find('.descr');
+            const $btn = $item.find('.plusbtn');
+
+            if (!$descr.length || !$btn.length) {
+                return;
+            }
+
+            if ($btn.hasClass('active')) {
+                $btn.removeClass('is-hidden');
+                return;
+            }
+
+            const el = $descr[0];
+            const isOverflowing = el.scrollHeight > el.clientHeight + 1;
+
+            $btn.toggleClass('is-hidden', !isOverflowing);
+        });
+    }
+
+    // Розгортання / згортання тексту в блоці
+    $('.technology__item').on('click', '.plusbtn', function () {
+        const $btn = $(this);
+
+        if ($btn.hasClass('is-hidden')) {
+            return;
+        }
+
+        $btn.toggleClass('active');
+        $btn.attr('aria-expanded', $btn.hasClass('active'));
+
+        if (!$btn.hasClass('active')) {
+            updateTechnologyButtons();
+        }
+    });
+
+    buildTechnologyGrid();
+    updateTechnologyButtons();
+
+    // Перебудова сітки та перевірка кнопок при зміні розміру вікна
+    $(window).on('load resize', function () {
+        clearTimeout(technologyResizeTimer);
+        technologyResizeTimer = setTimeout(function () {
+            buildTechnologyGrid();
+            updateTechnologyButtons();
+        }, 100);
+    });
+
+    // ----------------------------------------- Відгуки ----------------------------------------------
+    // Слайдер відгуків + кнопка "Читати більше" / "Показати менше"
+    // Текст обрізається до 4 рядків у CSS; кнопку ховаємо, якщо текст коротший
+
+    let testimonialsResizeTimer; // таймер для debounce при resize вікна
+    const testimonialReadMoreText = 'Читати більше';
+    const testimonialReadLessText = 'Показати менше';
+
+    // Перевіряє, чи текст довший за 4 рядки
+    function isTestimonialOverflowing($descr) {
+        const el = $descr[0];
+        const contentEl = $descr.find('p')[0] || el;
+        const styles = window.getComputedStyle(contentEl);
+        const lineHeight = parseFloat(styles.lineHeight);
+        const maxLines = 4;
+
+        // Порівнюємо висоту тексту з line-height × 4 (надійніше, ніж scrollHeight + line-clamp)
+        if (lineHeight && !Number.isNaN(lineHeight)) {
+            return contentEl.scrollHeight > lineHeight * maxLines + 1;
+        }
+
+        // Запасний варіант, якщо line-height не вдалося отримати
+        return el.scrollHeight > el.clientHeight + 1;
+    }
+
+    // Проходить по всіх відгуках і ховає кнопку, якщо текст вміщується в 4 рядки
+    function updateTestimonialReadmore() {
+        $('.testimonial__item').each(function () {
+            const $item = $(this);
+            const $descr = $item.find('.testimonial__descr');
+            const $btn = $item.find('.testimonial__readmore');
+            const $body = $item.find('.testimonial__body');
+
+            if (!$descr.length || !$btn.length) {
+                return;
+            }
+
+            // Якщо текст розгорнутий — кнопку лишаємо видимою (для "Показати менше")
+            if ($body.hasClass('is-expanded')) {
+                $btn.removeClass('is-hidden');
+                return;
+            }
+
+            const isOverflowing = isTestimonialOverflowing($descr);
+
+            $btn.toggleClass('is-hidden', !isOverflowing);
+        });
+    }
+
+    // Ініціалізація слайдера відгуків
+    const testimonialsSwiper = new Swiper('.testimonials-slider', {
+        loop: true,
+        speed: 700,
+        slidesPerView: 4,
+        spaceBetween: 20,
+        autoHeight: true, // висота слайдера підлаштовується під контент (важливо при розгортанні тексту)
+        pagination: {
+            el: '.testimonials-slider .swiper-pagination',
+            clickable: true,
+        },
+        on: {
+            // Після ініціалізації / зміни розміру слайдера — перевіряємо кнопки знову
+            init: function () {
+                updateTestimonialReadmore();
+            },
+            resize: function () {
+                updateTestimonialReadmore();
+            },
+        },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+    });
+
+    // Клік по "Читати більше" — розгортає текст, міняє підпис на "Показати менше"
+    $('.testimonials-slider').on('click', '.testimonial__readmore', function () {
+        const $btn = $(this);
+
+        if ($btn.hasClass('is-hidden')) {
+            return;
+        }
+
+        const $body = $btn.closest('.testimonial__body');
+        const isExpanded = $body.hasClass('is-expanded');
+
+        $body.toggleClass('is-expanded', !isExpanded);
+        $btn.toggleClass('active', !isExpanded);
+        $btn.text(isExpanded ? testimonialReadMoreText : testimonialReadLessText);
+
+        testimonialsSwiper.update(); // перерахувати висоту слайдера після зміни тексту
+
+        if (isExpanded) {
+            updateTestimonialReadmore(); // після згортання — знову перевірити, чи потрібна кнопка
+        }
+    });
+
+    updateTestimonialReadmore(); // перша перевірка при завантаженні сторінки
+
+    // При зміні розміру вікна — перевірка кнопок + оновлення слайдера (debounce 100ms)
+    $(window).on('load resize', function () {
+        clearTimeout(testimonialsResizeTimer);
+        testimonialsResizeTimer = setTimeout(function () {
+            updateTestimonialReadmore();
+            testimonialsSwiper.update();
+        }, 100);
+    });
 
 
 
 
 
 })
-
-
-

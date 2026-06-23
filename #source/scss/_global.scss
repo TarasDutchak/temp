@@ -131,9 +131,7 @@ section {
     text-align: right;
 }
 
-.contact-link {
-    
-}
+.contact-link {}
 
 .posrel {
     position: relative;
@@ -297,6 +295,142 @@ a:hover {
     }
 }
 
+.showmorebtn {
+    color: $neutral900;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 120%;
+    position: relative;
+    text-decoration: none;
+    padding-right: 66px;
+    text-transform: uppercase;
+
+    .btnicon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .btnstatus {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+
+        &::after,
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 22px;
+            height: 2px;
+            background: $accentmain;
+            position: absolute;
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+
+        &::after {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &::before {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+    }
+
+    &.active {
+        .btnstatus {
+
+            &::after,
+            &::before {
+                background: $accentmain;
+            }
+
+            &::before {
+                transform: translate(-50%, -50%) rotate(0);
+            }
+        }
+
+        .num {
+            color: $accentmain;
+        }
+    }
+}
+
+.plusbtn {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    background: none;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+
+    .btnstatus {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+
+        &::after,
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 22px;
+            height: 2px;
+            background: $accentmain;
+            position: absolute;
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+
+        &::after {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &::before {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+        }
+    }
+
+    &.active {
+        .btnstatus {
+
+            &::after,
+            &::before {
+                background: $accentmain;
+            }
+
+            &::before {
+                transform: translate(-50%, -50%) rotate(0);
+            }
+        }
+
+        .num {
+            color: $accentmain;
+        }
+    }
+}
+
+
+
+
 @media(max-width:1499.8px) {
     h2 {
         font-size: 42px;
@@ -370,8 +504,8 @@ a:hover {
         height: 18px;
     }
 
-    
-  
+
+
 }
 
 
@@ -385,7 +519,7 @@ a:hover {
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
-    
+
 }
 
 // .char {
