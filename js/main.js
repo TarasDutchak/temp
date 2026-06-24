@@ -433,7 +433,7 @@ jQuery(document).ready(function ($) {
     const testimonialsSwiper = new Swiper('.testimonials-slider', {
         loop: true,
         speed: 700,
-        slidesPerView: 4,
+        slidesPerView: 1,
         spaceBetween: 20,
         autoHeight: true, // висота слайдера підлаштовується під контент (важливо при розгортанні тексту)
         pagination: {
@@ -452,6 +452,15 @@ jQuery(document).ready(function ($) {
         autoplay: {
             delay: 4000,
             disableOnInteraction: false,
+        },
+        breakpoints: {
+           
+            575: {
+                slidesPerView: 2,
+            },
+            1200: {
+                slidesPerView: 4,
+            },
         },
     });
 
