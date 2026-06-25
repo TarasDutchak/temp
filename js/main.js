@@ -199,6 +199,85 @@ jQuery(document).ready(function ($) {
             x: -100, y: 30,
         });
     });
+    // techonology
+    mm.add('(min-width: 992px)', () => {
+        gsap.from('.gsaptec1', {
+            scrollTrigger: { trigger: '.gsaptec1', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -200, y: 200,
+        });
+        gsap.from('.gsaptec2', {
+            scrollTrigger: { trigger: '.gsaptec2', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 0, y: 200,
+        });
+        gsap.from('.gsaptec3', {
+            scrollTrigger: { trigger: '.gsaptec3', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 400, y: 100,
+        });
+        gsap.from('.gsaptec4', {
+            scrollTrigger: { trigger: '.gsaptec4', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -200, y: 100,
+        });
+        gsap.from('.gsaptec5', {
+            scrollTrigger: { trigger: '.gsaptec5', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 0, y: 200,
+        });
+        gsap.from('.gsaptec6', {
+            scrollTrigger: { trigger: '.gsaptec6', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 200, y: 150,
+        });
+    });
+    mm.add('(min-width: 768px) and (max-width: 991.8px)', () => {
+        gsap.from('.gsaptec1', {
+            scrollTrigger: { trigger: '.gsaptec1', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -150, y: 100,
+        });
+        gsap.from('.gsaptec2', {
+            scrollTrigger: { trigger: '.gsaptec2', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 150, y: 100,
+        });
+        gsap.from('.gsaptec3', {
+            scrollTrigger: { trigger: '.gsaptec3', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -150, y: 100,
+        });
+        gsap.from('.gsaptec4', {
+            scrollTrigger: { trigger: '.gsaptec4', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 150, y: 100,
+        });
+        gsap.from('.gsaptec5', {
+            scrollTrigger: { trigger: '.gsaptec5', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -150, y: 100,
+        });
+        gsap.from('.gsaptec6', {
+            scrollTrigger: { trigger: '.gsaptec6', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 150, y: 100,
+        });
+    });
+    mm.add('(max-width: 767px)', () => {
+        gsap.from('.gsaptec1', {
+            scrollTrigger: { trigger: '.gsaptec1', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -100, y: 100,
+        });
+        gsap.from('.gsaptec2', {
+            scrollTrigger: { trigger: '.gsaptec2', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 100, y: 100,
+        });
+        gsap.from('.gsaptec3', {
+            scrollTrigger: { trigger: '.gsaptec3', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -100, y: 100,
+        });
+        gsap.from('.gsaptec4', {
+            scrollTrigger: { trigger: '.gsaptec4', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 100, y: 100,
+        });
+        gsap.from('.gsaptec5', {
+            scrollTrigger: { trigger: '.gsaptec5', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: -100, y: 100,
+        });
+        gsap.from('.gsaptec6', {
+            scrollTrigger: { trigger: '.gsaptec6', start: 'top 90%', end: 'top 20%', scrub: 1 },
+            x: 100, y: 100,
+        });
+    });
 
 
     // --------------------------- Слайдер з картинками - сторінка сервісів --------------------------------
