@@ -111,6 +111,31 @@
     position: relative;
 }
 
+.benefits__service-anim {
+    @media (max-width: 767.8px) {
+        opacity: 0;
+        transition: opacity 0.8s ease, transform 0.8s ease;
+
+        &[data-fade="left"] {
+            transform: translateX(-40px);
+        }
+
+        &[data-fade="right"] {
+            transform: translateX(40px);
+        }
+
+        &.is-fade-in {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .char {
+            transform: none;
+            transition: none;
+        }
+    }
+}
+
 .services {
 
     h2 {
@@ -641,7 +666,7 @@
     }
 }
 
-.testimonials {
+.testimonials.pt70 {
     padding-top: 70px;
 }
 

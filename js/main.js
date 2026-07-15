@@ -47,25 +47,28 @@ jQuery(document).ready(function ($) {
 
     // ------------------------- Textsldier - Головна сторінка (.workwithtemp) ------------------------------
 
-    var swiper = new Swiper(".textslider", {
-        effect: "fade",
-        loop: true,
-        speed: 700,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        fadeEffect: {
-            crossFade: true,
-        },
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-    });
+    if (document.querySelector('.textslider')) {
+        new Swiper('.textslider', {
+            effect: 'fade',
+            loop: true,
+            speed: 700,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            fadeEffect: {
+                crossFade: true,
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+        });
+    }
 
     // ------------------------------------- Слайдер Логотипів -------------------------------------
-    var swiper = new Swiper(".logoslider", {
+    if (document.querySelector('.logoslider')) {
+        new Swiper('.logoslider', {
         // slidesPerView: 4.5,
         spaceBetween: 10,
         loop: true,
@@ -93,7 +96,8 @@ jQuery(document).ready(function ($) {
                 spaceBetween: 20,
             },
         },
-    });
+        });
+    }
 
     // ------------------------------------- Інпут маска для телефону -------------------------------------
     $('.telnum').inputmask({
@@ -149,6 +153,10 @@ jQuery(document).ready(function ($) {
     Splitting();
 
     document.querySelectorAll('[data-splitting]').forEach(el => {
+        if (el.classList.contains('benefits__service-anim')) {
+            return;
+        }
+
         new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
                 const delay = parseInt(el.dataset.delay) || 0;
@@ -161,138 +169,170 @@ jQuery(document).ready(function ($) {
         }, { threshold: 0.1, rootMargin: '0px 0px -15% 0px' }).observe(el);
     });
 
+    // benefits__service: desktop — splitting, mobile — fade left/right
+    (function initBenefitsServiceAnim() {
+        const section = document.querySelector('.benefits__service');
+
+        if (!section) {
+            return;
+        }
+
+        const items = section.querySelectorAll('.benefits__service-anim');
+        const mq = window.matchMedia('(min-width: 768px)');
+        let mobileObserver = null;
+        let desktopObserver = null;
+
+        function setupDesktop() {
+            if (mobileObserver) {
+                mobileObserver.disconnect();
+                mobileObserver = null;
+            }
+
+            items.forEach((el) => {
+                el.classList.remove('is-fade-in');
+            });
+
+            if (desktopObserver) {
+                desktopObserver.disconnect();
+            }
+
+            desktopObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.dataset.delay, 10) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('in-view');
+                        }, delay);
+                    } else {
+                        entry.target.classList.remove('in-view');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -15% 0px' });
+
+            items.forEach((el) => desktopObserver.observe(el));
+        }
+
+        function setupMobile() {
+            if (desktopObserver) {
+                desktopObserver.disconnect();
+                desktopObserver = null;
+            }
+
+            items.forEach((el) => {
+                el.classList.remove('in-view');
+            });
+
+            if (mobileObserver) {
+                mobileObserver.disconnect();
+            }
+
+            mobileObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.dataset.delay, 10) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('is-fade-in');
+                        }, delay);
+                    } else {
+                        entry.target.classList.remove('is-fade-in');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -15% 0px' });
+
+            items.forEach((el) => mobileObserver.observe(el));
+        }
+
+        function update() {
+            if (mq.matches) {
+                setupDesktop();
+            } else {
+                setupMobile();
+            }
+        }
+
+        mq.addEventListener('change', update);
+        update();
+    })();
+
     // об'єкти анімація
     // ---------------------- Анімація об'єктів при скролі (секція - .objects) ------------------------------
+    // GSAP-анімація тільки якщо елемент є на сторінці
+    function gsapScrollFrom(selector, vars) {
+        if (!document.querySelector(selector)) {
+            return;
+        }
+
+        gsap.from(selector, {
+            scrollTrigger: {
+                trigger: selector,
+                start: 'top 90%',
+                end: 'top 20%',
+                scrub: 1,
+            },
+            ...vars,
+        });
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     mm.add('(min-width: 768px)', () => {
-        gsap.from('.gsap1', {
-            scrollTrigger: { trigger: '.gsap1', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -400, y: -50,
-        });
-        gsap.from('.gsap2', {
-            scrollTrigger: { trigger: '.gsap2', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 250, y: -200,
-        });
-        gsap.from('.gsap3', {
-            scrollTrigger: { trigger: '.gsap3', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 400, y: 50,
-        });
+        gsapScrollFrom('.gsap1', { x: -400, y: -50 });
+        gsapScrollFrom('.gsap2', { x: 250, y: -200 });
+        gsapScrollFrom('.gsap3', { x: 400, y: 50 });
     });
     mm.add('(max-width: 767px)', () => {
-        gsap.from('.gsap1', {
-            scrollTrigger: { trigger: '.gsap1', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -100, y: 30,
-        });
-        gsap.from('.gsap2', {
-            scrollTrigger: { trigger: '.gsap2', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 100, y: 50,
-        });
-        gsap.from('.gsap3', {
-            scrollTrigger: { trigger: '.gsap3', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -100, y: 30,
-        });
+        gsapScrollFrom('.gsap1', { x: -100, y: 30 });
+        gsapScrollFrom('.gsap2', { x: 100, y: 50 });
+        gsapScrollFrom('.gsap3', { x: -100, y: 30 });
     });
-    // techonology
+    // technology
     mm.add('(min-width: 992px)', () => {
-        gsap.from('.gsaptec1', {
-            scrollTrigger: { trigger: '.gsaptec1', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -200, y: 200,
-        });
-        gsap.from('.gsaptec2', {
-            scrollTrigger: { trigger: '.gsaptec2', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 0, y: 200,
-        });
-        gsap.from('.gsaptec3', {
-            scrollTrigger: { trigger: '.gsaptec3', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 400, y: 100,
-        });
-        gsap.from('.gsaptec4', {
-            scrollTrigger: { trigger: '.gsaptec4', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -200, y: 100,
-        });
-        gsap.from('.gsaptec5', {
-            scrollTrigger: { trigger: '.gsaptec5', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 0, y: 200,
-        });
-        gsap.from('.gsaptec6', {
-            scrollTrigger: { trigger: '.gsaptec6', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 200, y: 150,
-        });
+        gsapScrollFrom('.gsaptec1', { x: -200, y: 200 });
+        gsapScrollFrom('.gsaptec2', { x: 0, y: 200 });
+        gsapScrollFrom('.gsaptec3', { x: 400, y: 100 });
+        gsapScrollFrom('.gsaptec4', { x: -200, y: 100 });
+        gsapScrollFrom('.gsaptec5', { x: 0, y: 200 });
+        gsapScrollFrom('.gsaptec6', { x: 200, y: 150 });
     });
     mm.add('(min-width: 768px) and (max-width: 991.8px)', () => {
-        gsap.from('.gsaptec1', {
-            scrollTrigger: { trigger: '.gsaptec1', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -150, y: 100,
-        });
-        gsap.from('.gsaptec2', {
-            scrollTrigger: { trigger: '.gsaptec2', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 150, y: 100,
-        });
-        gsap.from('.gsaptec3', {
-            scrollTrigger: { trigger: '.gsaptec3', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -150, y: 100,
-        });
-        gsap.from('.gsaptec4', {
-            scrollTrigger: { trigger: '.gsaptec4', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 150, y: 100,
-        });
-        gsap.from('.gsaptec5', {
-            scrollTrigger: { trigger: '.gsaptec5', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -150, y: 100,
-        });
-        gsap.from('.gsaptec6', {
-            scrollTrigger: { trigger: '.gsaptec6', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 150, y: 100,
-        });
+        gsapScrollFrom('.gsaptec1', { x: -150, y: 100 });
+        gsapScrollFrom('.gsaptec2', { x: 150, y: 100 });
+        gsapScrollFrom('.gsaptec3', { x: -150, y: 100 });
+        gsapScrollFrom('.gsaptec4', { x: 150, y: 100 });
+        gsapScrollFrom('.gsaptec5', { x: -150, y: 100 });
+        gsapScrollFrom('.gsaptec6', { x: 150, y: 100 });
     });
     mm.add('(max-width: 767px)', () => {
-        gsap.from('.gsaptec1', {
-            scrollTrigger: { trigger: '.gsaptec1', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -100, y: 100,
-        });
-        gsap.from('.gsaptec2', {
-            scrollTrigger: { trigger: '.gsaptec2', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 100, y: 100,
-        });
-        gsap.from('.gsaptec3', {
-            scrollTrigger: { trigger: '.gsaptec3', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -100, y: 100,
-        });
-        gsap.from('.gsaptec4', {
-            scrollTrigger: { trigger: '.gsaptec4', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 100, y: 100,
-        });
-        gsap.from('.gsaptec5', {
-            scrollTrigger: { trigger: '.gsaptec5', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: -100, y: 100,
-        });
-        gsap.from('.gsaptec6', {
-            scrollTrigger: { trigger: '.gsaptec6', start: 'top 90%', end: 'top 20%', scrub: 1 },
-            x: 100, y: 100,
-        });
+        gsapScrollFrom('.gsaptec1', { x: -100, y: 100 });
+        gsapScrollFrom('.gsaptec2', { x: 100, y: 100 });
+        gsapScrollFrom('.gsaptec3', { x: -100, y: 100 });
+        gsapScrollFrom('.gsaptec4', { x: 100, y: 100 });
+        gsapScrollFrom('.gsaptec5', { x: -100, y: 100 });
+        gsapScrollFrom('.gsaptec6', { x: 100, y: 100 });
     });
 
 
     // --------------------------- Слайдер з картинками - сторінка сервісів --------------------------------
-    var swiper = new Swiper(".imageslider", {
-        loop: true,
-        speed: 900,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-    });
+    if (document.querySelector('.imageslider')) {
+        new Swiper('.imageslider', {
+            loop: true,
+            speed: 900,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+        });
+    }
 
     // ----------------------------------------- Акордеони ----------------------------------------------
     $('.accordeon-wrap').on('click', '.accordeon__header', function () {
@@ -333,9 +373,11 @@ jQuery(document).ready(function ($) {
     });
 
     // ---------------------------------- Fancybox - галереї ---------------------------------------
-    Fancybox.bind('.hidden-gallery [data-fancybox]', {
-        // Your custom options
-    });
+    if (document.querySelector('.hidden-gallery [data-fancybox]')) {
+        Fancybox.bind('.hidden-gallery [data-fancybox]', {
+            // Your custom options
+        });
+    }
 
     $('.js-gallery-open').on('click', function (e) {
         e.preventDefault();
@@ -509,73 +551,75 @@ jQuery(document).ready(function ($) {
     }
 
     // Ініціалізація слайдера відгуків
-    const testimonialsSwiper = new Swiper('.testimonials-slider', {
-        loop: true,
-        speed: 700,
-        slidesPerView: 1,
-        spaceBetween: 20,
-        autoHeight: true, // висота слайдера підлаштовується під контент (важливо при розгортанні тексту)
-        pagination: {
-            el: '.testimonials-slider .swiper-pagination',
-            clickable: true,
-        },
-        on: {
-            // Після ініціалізації / зміни розміру слайдера — перевіряємо кнопки знову
-            init: function () {
+
+    if ($('.testimonials-slider').length > 0) {
+        const testimonialsSwiper = new Swiper('.testimonials-slider', {
+            loop: true,
+            speed: 700,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoHeight: true, // висота слайдера підлаштовується під контент (важливо при розгортанні тексту)
+            pagination: {
+                el: '.testimonials-slider .swiper-pagination',
+                clickable: true,
+            },
+            on: {
+                // Після ініціалізації / зміни розміру слайдера — перевіряємо кнопки знову
+                init: function () {
+                    updateTestimonialReadmore();
+                },
+                resize: function () {
+                    updateTestimonialReadmore();
+                },
+            },
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+
+                575: {
+                    slidesPerView: 2,
+                },
+                1200: {
+                    slidesPerView: 4,
+                },
+            },
+        });
+
+        // Клік по "Читати більше" — розгортає текст, міняє підпис на "Показати менше"
+        $('.testimonials-slider').on('click', '.testimonial__readmore', function () {
+            const $btn = $(this);
+
+            if ($btn.hasClass('is-hidden')) {
+                return;
+            }
+
+            const $body = $btn.closest('.testimonial__body');
+            const isExpanded = $body.hasClass('is-expanded');
+
+            $body.toggleClass('is-expanded', !isExpanded);
+            $btn.toggleClass('active', !isExpanded);
+            $btn.text(isExpanded ? testimonialReadMoreText : testimonialReadLessText);
+
+            testimonialsSwiper.update(); // перерахувати висоту слайдера після зміни тексту
+
+            if (isExpanded) {
+                updateTestimonialReadmore(); // після згортання — знову перевірити, чи потрібна кнопка
+            }
+        });
+
+        updateTestimonialReadmore(); // перша перевірка при завантаженні сторінки
+
+        // При зміні розміру вікна — перевірка кнопок + оновлення слайдера (debounce 100ms)
+        $(window).on('load resize', function () {
+            clearTimeout(testimonialsResizeTimer);
+            testimonialsResizeTimer = setTimeout(function () {
                 updateTestimonialReadmore();
-            },
-            resize: function () {
-                updateTestimonialReadmore();
-            },
-        },
-        autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-           
-            575: {
-                slidesPerView: 2,
-            },
-            1200: {
-                slidesPerView: 4,
-            },
-        },
-    });
-
-    // Клік по "Читати більше" — розгортає текст, міняє підпис на "Показати менше"
-    $('.testimonials-slider').on('click', '.testimonial__readmore', function () {
-        const $btn = $(this);
-
-        if ($btn.hasClass('is-hidden')) {
-            return;
-        }
-
-        const $body = $btn.closest('.testimonial__body');
-        const isExpanded = $body.hasClass('is-expanded');
-
-        $body.toggleClass('is-expanded', !isExpanded);
-        $btn.toggleClass('active', !isExpanded);
-        $btn.text(isExpanded ? testimonialReadMoreText : testimonialReadLessText);
-
-        testimonialsSwiper.update(); // перерахувати висоту слайдера після зміни тексту
-
-        if (isExpanded) {
-            updateTestimonialReadmore(); // після згортання — знову перевірити, чи потрібна кнопка
-        }
-    });
-
-    updateTestimonialReadmore(); // перша перевірка при завантаженні сторінки
-
-    // При зміні розміру вікна — перевірка кнопок + оновлення слайдера (debounce 100ms)
-    $(window).on('load resize', function () {
-        clearTimeout(testimonialsResizeTimer);
-        testimonialsResizeTimer = setTimeout(function () {
-            updateTestimonialReadmore();
-            testimonialsSwiper.update();
-        }, 100);
-    });
-
+                testimonialsSwiper.update();
+            }, 100);
+        });
+    }
 
 
 
