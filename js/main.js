@@ -69,33 +69,33 @@ jQuery(document).ready(function ($) {
     // ------------------------------------- Слайдер Логотипів -------------------------------------
     if (document.querySelector('.logoslider')) {
         new Swiper('.logoslider', {
-        // slidesPerView: 4.5,
-        spaceBetween: 10,
-        loop: true,
-        speed: 6000,
-        allowTouchMove: false,
-        slidesPerView: 2,
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-            575: {
-                slidesPerView: 3,
+            // slidesPerView: 4.5,
+            spaceBetween: 10,
+            loop: true,
+            speed: 6000,
+            allowTouchMove: false,
+            slidesPerView: 2,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
             },
-            768: {
-                slidesPerView: 3,
-                spaceBetween: 20,
+            breakpoints: {
+                575: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                991: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                },
+                1200: {
+                    slidesPerView: 4.5,
+                    spaceBetween: 20,
+                },
             },
-            991: {
-                slidesPerView: 4,
-                spaceBetween: 20,
-            },
-            1200: {
-                slidesPerView: 4.5,
-                spaceBetween: 20,
-            },
-        },
         });
     }
 
@@ -645,7 +645,86 @@ jQuery(document).ready(function ($) {
         });
     }
 
+    // ------------------------- CASE SLIDER --------------------------------
+    if (document.querySelector('.case-slider')) {
+        new Swiper('.case-slider', {
+            speed: 900,
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next.orange',
+                prevEl: '.swiper-button-prev.orange',
+            },
+        });
+    }
 
+    // ------------------------- CASE VIDEO --------------------------------
+    // Кастомна кнопка play по центру + poster; після старту — нативні controls
+    (function initCaseVideo() {
+        const blocks = document.querySelectorAll('.case-video__blox');
 
+        if (!blocks.length) {
+            return;
+        }
+
+        blocks.forEach((block) => {
+            const video = block.querySelector('video');
+            const playBtn = block.querySelector('.case-video__play');
+
+            if (!video || !playBtn) {
+                return;
+            }
+
+            function playVideo() {
+                video.setAttribute('controls', '');
+                block.classList.add('is-playing');
+
+                const playPromise = video.play();
+
+                if (playPromise && typeof playPromise.catch === 'function') {
+                    playPromise.catch(() => {
+                        block.classList.remove('is-playing');
+                        video.removeAttribute('controls');
+                    });
+                }
+            }
+
+            function showPlayButton() {
+                if (!video.paused && !video.ended) {
+                    return;
+                }
+
+                block.classList.remove('is-playing');
+            }
+
+            playBtn.addEventListener('click', playVideo);
+
+            // Клік по самому відео, поки воно ще не грає
+            video.addEventListener('click', function (e) {
+                if (block.classList.contains('is-playing')) {
+                    return;
+                }
+
+                e.preventDefault();
+                playVideo();
+            });
+
+            video.addEventListener('pause', showPlayButton);
+            video.addEventListener('ended', function () {
+                block.classList.remove('is-playing');
+                video.removeAttribute('controls');
+                video.load(); // повертає poster після закінчення
+            });
+        });
+    })();
 
 })
