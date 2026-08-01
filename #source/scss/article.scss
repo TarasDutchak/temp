@@ -1,0 +1,36 @@
+.article-page {
+    padding: 30px 0 100px;
+}
+
+.article-head {
+    h1 {
+        margin-bottom: 40px;
+        font-size: 40px;
+        line-height: 120%;
+        color: $neutral900;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+    margin-bottom: 15px;
+}
+
+.article-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+
+    .tag {
+        padding: 3px 10px;
+        background: #FFEEE6;
+        color: $accentmain;
+        font-size: 16px;
+        line-height: 150%;
+    }
+
+    .date {
+        color: $neutral900;
+        font-size: 16px;
+    }
+}

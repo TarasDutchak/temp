@@ -727,4 +727,54 @@ jQuery(document).ready(function ($) {
         });
     })();
 
+    // ------------------------- REVEAL-UP --------------------------------
+    // Універсальна анімація: додай клас .reveal-up на елемент
+    // Опційно: data-delay="150" для ручної затримки
+    (function initRevealUp() {
+        const items = document.querySelectorAll('.reveal-up');
+
+        if (!items.length) {
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                const el = entry.target;
+                const delay = parseInt(el.dataset.delay, 10) || 0;
+
+                setTimeout(() => {
+                    el.classList.add('is-inview');
+                    el.classList.remove('is-reveal-ready');
+                }, delay);
+
+                obs.unobserve(el);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+        let staggerIndex = 0;
+
+        items.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            // Вже у видимій зоні при завантаженні — без анімації, щоб не блимало
+            const alreadyVisible = rect.top < window.innerHeight * 0.92 && rect.bottom > 40;
+
+            if (alreadyVisible) {
+                el.classList.add('is-inview');
+                return;
+            }
+
+            if (!el.dataset.delay) {
+                el.dataset.delay = String((staggerIndex % 2) * 120);
+            }
+
+            staggerIndex += 1;
+            el.classList.add('is-reveal-ready');
+            observer.observe(el);
+        });
+    })();
+
 })

@@ -606,6 +606,21 @@ a:hover {
     /* без --char-index - всі букви одночасно */
 }
 
+// Універсальна поява при скролі: клас .reveal-up на будь-якому блоці
+.reveal-up {
+    transition: opacity 0.7s ease, transform 0.7s ease;
+
+    &.is-reveal-ready {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    &.is-inview {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 
 
