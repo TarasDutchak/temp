@@ -777,4 +777,112 @@ jQuery(document).ready(function ($) {
         });
     })();
 
+    // ------------------------- ARTICLE TOC --------------------------------
+    // Збирає h2/h3/h4 з .article-body і будує зміст з плавним скролом
+    (function initArticleToc() {
+        const articleBody = document.querySelector('.article-body');
+        const toc = document.querySelector('.toc');
+        const tocList = toc && toc.querySelector('.toc__list');
+
+        if (!articleBody || !toc || !tocList) {
+            return;
+        }
+
+        const headings = articleBody.querySelectorAll('h2, h3, h4');
+
+        if (!headings.length) {
+            toc.hidden = true;
+            return;
+        }
+
+        function slugify(text) {
+            return text
+                .toLowerCase()
+                .trim()
+                .replace(/[^\p{L}\p{N}]+/gu, '-')
+                .replace(/^-+|-+$/g, '') || 'section';
+        }
+
+        const usedIds = new Set();
+        const arrowHtml =
+            '<span class="linkarr-anim" aria-hidden="true">' +
+            '<img class="default-ic" src="img/general/link-arrow-orange.svg" alt="">' +
+            '<img class="hover-ic" src="img/general/link-arrow-orange.svg" alt="">' +
+            '</span>';
+
+        tocList.innerHTML = '';
+
+        headings.forEach((heading) => {
+            const text = heading.textContent.replace(/\s+/g, ' ').trim();
+
+            if (!text) {
+                return;
+            }
+
+            const baseId = heading.id || slugify(text);
+            let id = baseId;
+            let n = 2;
+
+            while (usedIds.has(id) || (document.getElementById(id) && document.getElementById(id) !== heading)) {
+                id = `${baseId}-${n++}`;
+            }
+
+            usedIds.add(id);
+            heading.id = id;
+            heading.classList.add('article-anchor');
+
+            const level = heading.tagName.toLowerCase();
+            const li = document.createElement('li');
+            li.className = `toc__item toc__item--${level}`;
+
+            const link = document.createElement('a');
+            link.href = `#${id}`;
+            link.className = 'toc__link';
+
+            const title = document.createElement('span');
+            title.className = 'toc__title';
+            title.textContent = text;
+
+            link.appendChild(title);
+            link.insertAdjacentHTML('beforeend', arrowHtml);
+
+            li.appendChild(link);
+            tocList.appendChild(li);
+        });
+
+        tocList.addEventListener('click', (e) => {
+            const link = e.target.closest('a.toc__link');
+
+            if (!link) {
+                return;
+            }
+
+            const hash = link.getAttribute('href');
+            const target = hash && document.querySelector(hash);
+
+            if (!target) {
+                return;
+            }
+
+            e.preventDefault();
+
+            const headerOffset = (document.querySelector('.header')?.offsetHeight || 0) + 20;
+
+            if (typeof lenis !== 'undefined' && lenis.scrollTo) {
+                lenis.scrollTo(target, {
+                    offset: -headerOffset,
+                    duration: 1.6,
+                    easing: (t) => 1 - Math.pow(1 - t, 3), // easeOutCubic — м’якше доїзджає
+                });
+            } else {
+                const top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+
+            if (history.pushState) {
+                history.pushState(null, '', hash);
+            }
+        });
+    })();
+
 })
