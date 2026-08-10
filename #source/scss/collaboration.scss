@@ -1,0 +1,324 @@
+.hero_collab {
+    .hero__title {
+        margin-bottom: 25px;
+    }
+
+    p {
+        max-width: 635px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .hero__wrapper {
+        padding-bottom: 50px;
+    }
+}
+
+.infocollabtext {
+    min-height: 244px;
+    background: #F3F1F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    h2 {
+        text-transform: uppercase;
+        color: #1D1D1D;
+        margin: 0;
+        font-size: 30px;
+        line-height: 130%;
+        font-weight: 500;
+    }
+}
+
+.services__collab {
+    padding-bottom: 0;
+
+    .stickysteps__item {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        padding: 60px 0 105px;
+    }
+
+
+}
+
+.specialization__collab {
+    padding-bottom: 130px;
+
+    .specialization__descr {
+        text-align: right;
+    }
+
+    .specialization__list {
+        background: none;
+        padding: 0;
+    }
+
+    .specialization__list {
+        position: relative;
+        margin-top: -50px;
+
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: calc(100% - 40px);
+            background: #4A4A4A;
+            position: absolute;
+            left: 52px;
+            top: 20px;
+            z-index: 1;
+        }
+
+        ul {
+            gap: 45px;
+        }
+
+        li {
+            padding-left: 110px;
+            position: relative;
+            z-index: 2;
+
+
+            p {
+                font-size: 40px;
+                margin: 0;
+            }
+
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                border: 1px solid #fff;
+                position: absolute;
+                left: 45px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: #1D1D1D;
+            }
+
+        }
+    }
+
+
+}
+
+.doc-support {
+    .imgwrap {
+        img {
+            vertical-align: top;
+            width: 100%;
+            border-radius: 20px;
+        }
+    }
+
+    // після <br> orange-text не first-child — глобальний margin-left: 0.25em зайвий
+    h2.reveal-title .orange-text {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.doclist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #D3D3D3;
+        position: relative;
+        padding-left: 38px;
+
+        h4 {
+            font-size: 22px;
+            line-height: 130%;
+            color: #1D1D1D;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        // fade на h4 — іконка ::after на li лишається на місці
+        [data-fade] {
+            opacity: 0;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            display: inline-block;
+            max-width: 100%;
+
+            &[data-fade="right"] {
+                transform: translateX(60px);
+            }
+
+            &[data-fade="left"] {
+                transform: translateX(-60px);
+            }
+
+            &.is-fade-in {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        &:last-child {
+            border: none;
+            margin: 0;
+        }
+
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            background: url(../img/collaboration/check.svg) no-repeat center center / 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+
+}
+
+.pagemap {
+    background: #1D1D1D;
+    padding-top: 40px;
+
+    .mapsection {
+        margin: 0;
+    }
+}
+
+@media(max-width: 1499.8px) {
+    .specialization__collab .specialization__list li p {
+        font-size: 30px;
+    }
+
+    .specialization__collab .specialization__list ul {
+        gap: 35px;
+    }
+}
+
+@media(max-width: 1199.8px) {
+    .infocollabtext {
+        min-height: 200px;
+
+        h2 {
+            font-size: 24px;
+        }
+    }
+
+    .doclist li h4 {
+        font-size: 18px;
+    }
+}
+
+@media(max-width: 991.8px) {
+    .hero_collab .hero__title {
+        width: 100%;
+    }
+
+    .services__collab .stickysteps__item {
+        padding-bottom: 40px;
+    }
+
+    .specialization__collab .specialization__list {
+        margin-top: 0;
+    }
+
+    .specialization__collab .specialization__list li {
+        padding-left: 60px;
+    }
+
+    .specialization__collab .specialization__list li:before {
+        left: 20px;
+    }
+
+    .specialization__collab .specialization__list:after {
+        left: 27px;
+    }
+
+    .doc-support .imgwrap {
+        margin-bottom: 30px;
+    }
+
+    .doc-support {
+        padding: 40px 0;
+    }
+}
+
+@media(max-width: 767.8px) {
+    .specialization__collab .specialization__list li p {
+        font-size: 24px;
+    }
+
+    .specialization__collab {
+        padding: 70px 0;
+    }
+
+    .doc-support h2.reveal-title .orange-text {
+        margin: 0 0.25em;
+    }
+}
+
+@media(max-width: 575.8px) {
+    .hero_collab .hero__title .orange-text {
+        margin-left: 0;
+    }
+
+    .hero_collab .hero__title {
+        margin-bottom: 15px;
+    }
+
+    .hero_collab p {
+        font-weight: 400;
+    }
+
+    .hero_collab .hero__wrapper {
+        padding-bottom: 30px;
+    }
+
+
+    .infocollabtext h2 {
+        font-size: 18px;
+    }
+
+    .infocollabtext {
+        min-height: 170px;
+        padding: 25px 0;
+    }
+
+    .services__collab .stickysteps__item {
+        padding-bottom: 10px;
+    }
+
+    .services__collab .stickysteps__item {
+        top: 25px !important;
+    }
+
+    .specialization__collab .specialization__list li p {
+        font-size: 18px;
+    }
+
+    .specialization__collab .specialization__list ul {
+        gap: 20px;
+
+        li::after {
+            display: none;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+}

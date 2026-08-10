@@ -254,9 +254,9 @@ jQuery(document).ready(function ($) {
         update();
     })();
 
-    // specialization__list: пункти з'являються по черзі зправа наліво
-    (function initSpecializationListAnim() {
-        const items = document.querySelectorAll('.specialization__list [data-fade]');
+    // specialization__list / doclist: пункти з'являються по черзі (data-fade)
+    (function initFadeListAnim() {
+        const items = document.querySelectorAll('.specialization__list [data-fade], .doclist [data-fade]');
 
         if (!items.length) {
             return;
@@ -883,6 +883,60 @@ jQuery(document).ready(function ($) {
                 history.pushState(null, '', hash);
             }
         });
+    })();
+
+    // input mask
+    $('.telinput').inputmask({
+        "mask": "+ 38(099) 999-99-99",
+        showMaskOnHover: false,
+        showMaskOnFocus: false,
+    });
+
+    // ------------------------- CONTACTS MAP (Leaflet + OSM) ------------------
+    (function initContactsMap() {
+        const mapEl = document.getElementById('contacts-map');
+
+        if (!mapEl || typeof L === 'undefined') {
+            return;
+        }
+
+        const lat = parseFloat(mapEl.dataset.lat) || 49.5417;
+        const lng = parseFloat(mapEl.dataset.lng) || 25.6329;
+        const zoom = parseInt(mapEl.dataset.zoom, 10) || 16;
+        const title = mapEl.dataset.title || 'м. Тернопіль, вул. Протасевича 4';
+
+        const map = L.map(mapEl, {
+            scrollWheelZoom: false,
+            zoomControl: true,
+        }).setView([lat, lng], zoom);
+
+        // Світлі сірі тайли (близько до макету)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20,
+        }).addTo(map);
+
+        const markerIcon = L.divIcon({
+            className: 'contacts-map-marker',
+            html: '<span class="contacts-map-marker__pin" aria-hidden="true"></span>',
+            iconSize: [36, 36],
+            iconAnchor: [18, 36],
+            popupAnchor: [0, -32],
+        });
+
+        L.marker([lat, lng], { icon: markerIcon })
+            .addTo(map)
+            .bindPopup(`<p class="contacts-map-popup">${title}</p>`);
+
+        // після layout (flex/grid) — оновити розмір карти
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 100);
+
+        // увімкнути zoom колесом після кліку по карті
+        map.on('click', () => map.scrollWheelZoom.enable());
+        map.on('mouseout', () => map.scrollWheelZoom.disable());
     })();
 
 })

@@ -7,6 +7,19 @@ html {
     box-sizing: border-box;
 }
 
+// Прихований label для a11y (візуально невидимий)
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .main {
     flex: 1 1 auto;
     padding-top: 100px;
