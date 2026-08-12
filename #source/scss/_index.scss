@@ -1414,3 +1414,162 @@ a.gridbox {
 }
 
 //  padding-right: calc((100vw - 1420px) / 2);
+
+// ------------------------- Calc popup (Розрахувати проєкт) -------------------------
+.calc-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+.calc-popup__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(29, 29, 29, 0.55);
+    cursor: pointer;
+}
+
+.calc-popup__dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    min-height: 200px;
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    padding: 50px;
+    background: #F3F1F0;
+    border-radius: 8px;
+    transform: translateY(16px);
+    transition: transform 0.3s ease;
+
+    .calc-popup.is-open & {
+        transform: translateY(0);
+    }
+}
+
+.calc-popup__close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    z-index: 2;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+}
+
+.calc-popup__content {
+    // місце під контент форми
+    min-height: 100px;
+}
+
+body.calc-popup-open {
+    overflow: hidden;
+}
+
+.calc-popup {
+    h3 {
+        font-size: 40px;
+        line-height: 120%;
+        margin-bottom: 25px;
+        font-weight: 400;
+        text-align: center;
+
+        span {
+            color: $accentmain;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        color: $neutral900;
+        line-height: 125%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
+        .inputfield {
+            width: 100%;
+            margin: 0;
+        }
+
+        input {
+            font-family: "DexaPro", sans-serif;
+            &::placeholder {
+                font-weight: 400;
+            }
+        }
+
+        .contact-link {
+            margin-top: 40px;
+            font-family: "DexaPro", sans-serif;
+        }
+    }
+}
+
+@media (max-width: 575.8px) {
+    .calc-popup__dialog {
+        padding: 40px 20px 30px;
+    }
+
+    .calc-popup__close {
+        top: 16px;
+        right: 16px;
+    }
+
+    .calc-popup {
+        h3 {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+    }
+
+    .calc-popup__dialog {
+        padding-top: 50px;
+    }
+
+    .calc-popup form {
+        gap: 10px;
+    }
+
+    .calc-popup form .contact-link {
+        margin-top: 20px;
+    }
+}

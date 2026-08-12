@@ -45,6 +45,39 @@ jQuery(document).ready(function ($) {
     $('.mebubtn').click(openMobileMenu);
     $('.closemenu, .menu-overlay').click(closeMobileMenu);
 
+    // ------------------------- Calc popup --------------------------------
+    (function initCalcPopup() {
+        const $popup = $('#calc-popup');
+
+        if (!$popup.length) {
+            return;
+        }
+
+        function openCalcPopup(e) {
+            if (e) {
+                e.preventDefault();
+            }
+
+            $popup.addClass('is-open').attr('aria-hidden', 'false');
+            $('body').addClass('calc-popup-open');
+            closeMobileMenu();
+        }
+
+        function closeCalcPopup() {
+            $popup.removeClass('is-open').attr('aria-hidden', 'true');
+            $('body').removeClass('calc-popup-open');
+        }
+
+        $(document).on('click', '.calculate-btn', openCalcPopup);
+        $popup.on('click', '[data-calc-popup-close]', closeCalcPopup);
+
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape' && $popup.hasClass('is-open')) {
+                closeCalcPopup();
+            }
+        });
+    })();
+
     // ------------------------- Textsldier - Головна сторінка (.workwithtemp) ------------------------------
 
     if (document.querySelector('.textslider')) {
