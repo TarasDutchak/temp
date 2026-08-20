@@ -313,20 +313,25 @@ jQuery(document).ready(function ($) {
 
     // об'єкти анімація
     // ---------------------- Анімація об'єктів при скролі (секція - .objects) ------------------------------
-    // GSAP-анімація тільки якщо елемент є на сторінці
+    // GSAP-анімація тільки якщо елемент є на сторінці;
+    // кожен матч — окремий ScrollTrigger (інакше кілька .gsaptec1 анімуються як одна секція)
     function gsapScrollFrom(selector, vars) {
-        if (!document.querySelector(selector)) {
+        const elements = gsap.utils.toArray(selector);
+
+        if (!elements.length) {
             return;
         }
 
-        gsap.from(selector, {
-            scrollTrigger: {
-                trigger: selector,
-                start: 'top 90%',
-                end: 'top 20%',
-                scrub: 1,
-            },
-            ...vars,
+        elements.forEach((el) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 90%',
+                    end: 'top 20%',
+                    scrub: 1,
+                },
+                ...vars,
+            });
         });
     }
 
@@ -342,11 +347,17 @@ jQuery(document).ready(function ($) {
         gsapScrollFrom('.gsap1', { x: -400, y: -50 });
         gsapScrollFrom('.gsap2', { x: 250, y: -200 });
         gsapScrollFrom('.gsap3', { x: 400, y: 50 });
+
+        gsapScrollFrom('.gsapow1', { x: -400, y: 150 });
+        gsapScrollFrom('.gsapow2', { x: 400, y: 150 });
     });
     mm.add('(max-width: 767px)', () => {
         gsapScrollFrom('.gsap1', { x: -100, y: 30 });
         gsapScrollFrom('.gsap2', { x: 100, y: 50 });
         gsapScrollFrom('.gsap3', { x: -100, y: 30 });
+
+        gsapScrollFrom('.gsapow1', { x: -200, y: 100 });
+        gsapScrollFrom('.gsapow2', { x: 200, y: 100 });
     });
     // technology
     mm.add('(min-width: 992px)', () => {
